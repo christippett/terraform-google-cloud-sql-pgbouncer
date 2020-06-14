@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/christippett/terraform-cloud-sql-pgbouncer/compare/v1.0.1...v1.1.0) (2020-06-14)
+
+
+### Features
+
+* :boom: Move creation of PgBouncer cloud-init config into sub-module ([9059b20](https://github.com/christippett/terraform-cloud-sql-pgbouncer/commit/9059b204e581a6eca06e152725b047fac9dd1829))
+
 ### [1.0.1](https://github.com/christippett/terraform-cloud-sql-pgbouncer/compare/v1.0.0...v1.0.1) (2020-06-14)
 
 
