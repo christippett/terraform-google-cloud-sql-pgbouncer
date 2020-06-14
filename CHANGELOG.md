@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/christippett/terraform-cloud-sql-pgbouncer/compare/v1.0.0...v1.0.1) (2020-06-14)
+
+
+### Features
+
+* Refactor & complete module Cloud SQL over private IP example ([13748e5](https://github.com/christippett/terraform-cloud-sql-pgbouncer/commit/13748e58aa7e117e6bc36fb6dcdebb1eecca6427))
+
+
+### Bug Fixes
+
+* Fix switched values for public/private IP address in output ([6f078a9](https://github.com/christippett/terraform-cloud-sql-pgbouncer/commit/6f078a9194617062fe2099f036e52288aefe9ca6))
+
 ## [1.0.0](https://github.com/christippett/terraform-cloud-sql-pgbouncer/compare/v1.0.0-alpha.0...v1.0.0) (2020-06-14)
 
 
