@@ -1,6 +1,6 @@
 locals {
-  public_ip  = google_compute_instance.pgbouncer.network_interface[0].network_ip
-  private_ip = length(google_compute_instance.pgbouncer.network_interface[0].access_config) > 0 ? google_compute_instance.pgbouncer.network_interface[0].access_config[0].nat_ip : null
+  private_ip = google_compute_instance.pgbouncer.network_interface[0].network_ip
+  public_ip  = length(google_compute_instance.pgbouncer.network_interface[0].access_config) > 0 ? google_compute_instance.pgbouncer.network_interface[0].access_config[0].nat_ip : null
 }
 
 /* Instance Configuration --------------------------------------------------- */
