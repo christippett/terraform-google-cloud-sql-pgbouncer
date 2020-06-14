@@ -1,15 +1,15 @@
 output "instance_name" {
-  description = "The instance name for the PgBouncer instance."
+  description = "The name for the PgBouncer instance."
   value       = var.name
 }
 
 output "private_ip_address" {
-  description = "The first private (PRIVATE) IPv4 address assigned for the master instance."
+  description = "The first private IPv4 address assigned to the PgBouncer instance."
   value       = local.private_ip
 }
 
 output "public_ip_address" {
-  description = "The first public (PRIMARY) IPv4 address assigned for the master instance."
+  description = "The first public IPv4 address assigned for the PgBouncer instance."
   value       = local.public_ip
 }
 
