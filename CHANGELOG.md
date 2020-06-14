@@ -24,7 +24,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* Fix incorrect default value for ([447a5cb](https://github.com/christippett/terraform-cloud-sql-pgbouncer/commit/447a5cb36b90d8d72564c419f3fcadaccdd8e6be))
+* Fix incorrect default input value for `pool_mode` ([447a5cb](https://github.com/christippett/terraform-cloud-sql-pgbouncer/commit/447a5cb36b90d8d72564c419f3fcadaccdd8e6be))
 
 ## 1.0.0-alpha.0 (2020-06-14)
 
