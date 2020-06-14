@@ -1,0 +1,33 @@
+#cloud-config
+
+write_files:
+  - path: /run/user/pgbouncer.ini
+    permissions: 0644
+    encoding: b64
+    content: ${config}
+  - path: /run/user/userlist.txt
+    permissions: 0644
+    encoding: b64
+    content: ${userlist}
+  - path: /etc/systemd/system/pgbouncer.service
+    permissions: 0644
+    owner: root
+    content: |
+      [Unit]
+      Description=Start PgBouncer
+
+      [Service]
+      StandardOutput=file:/var/log/pgbouncer.log
+      StandardError=file:/var/log/pgbouncer.log
+      ExecStart=/usr/bin/docker run \
+        --name pgbouncer \
+        --restart always \
+        -p ${listen_port}:${listen_port} \
+        -v /run/user/userlist.txt:/etc/pgbouncer/userlist.txt:ro \
+        -v /run/user/pgbouncer.ini:/etc/pgbouncer/pgbouncer.ini:ro \
+        ${image}
+      ExecStop=/usr/bin/docker stop pgbouncer
+      ExecStopPost=/usr/bin/docker rm pgbouncer
+runcmd:
+  - systemctl daemon-reload
+  - systemctl start pgbouncer.service
