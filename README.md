@@ -1,6 +1,6 @@
 # terraform-cloud-sql-pgbouncer
 
-[![GitHub](https://badgen.net/github/release/christippett/terraform-google-cloud-sql-pgbouncer)](https://github.com/christippett/terraform-google-cloud-sql-pgbouncer) [![Terraform](https://badgen.net/badge/icon/terraform?icon=terraform&label&color=purple)](https://registry.terraform.io/modules/christippett/cloud-sql-pgbouncer/) [![Terraform](https://badgen.net/github/license/micromatch/micromatch)](./LICENSE)
+[![GitHub](https://badgen.net/github/release/christippett/terraform-google-cloud-sql-pgbouncer)](https://github.com/christippett/terraform-google-cloud-sql-pgbouncer?cache=1800) [![Terraform](https://badgen.net/badge/icon/terraform?icon=terraform&label&color=purple)](https://registry.terraform.io/modules/christippett/cloud-sql-pgbouncer/) [![Terraform](https://badgen.net/github/license/micromatch/micromatch)](./LICENSE)
 
 Terraform module for deploying PgBouncer in front of a Cloud SQL PostgreSQL instance.
 
