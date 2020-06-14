@@ -121,8 +121,8 @@ variable "service_account_email" {
 }
 
 variable "service_account_scopes" {
-  description = "A list of service scopes to apply to the PgBouncer instance."
-  default     = ["https://www.googleapis.com/auth/cloud-platform"]
+  description = "A list of service scopes to apply to the PgBouncer instance. Default is the full `cloud-platform` access scope."
+  default     = null
 }
 
 variable "disable_public_ip" {

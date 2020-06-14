@@ -64,7 +64,7 @@ resource "google_compute_instance" "pgbouncer" {
     for_each = var.disable_service_account ? [] : [1]
     content {
       email  = var.service_account_email
-      scopes = var.service_account_scopes
+      scopes = var.service_account_scopes == null ? ["https://www.googleapis.com/auth/cloud-platform"] : var.service_account_scopes
     }
   }
 

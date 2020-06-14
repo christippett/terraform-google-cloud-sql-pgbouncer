@@ -57,7 +57,7 @@ Functional examples are included in the
 | pool\_mode | Specifies when a server connection can be reused by other clients. Possible values are `session`, `transaction` or `statement`. | `string` | `"transaction"` | no |
 | public\_ip\_address | The public IP address to assign to the PgBouncer instance. If not given, one will be generated. Note: setting this value will limit the instance count to 1. | `string` | `null` | no |
 | service\_account\_email | The service account e-mail address. If not given, the default Google Compute Engine service account is used. | `any` | `null` | no |
-| service\_account\_scopes | A list of service scopes to apply to the PgBouncer instance. | `list` | <pre>[<br>  "https://www.googleapis.com/auth/cloud-platform"<br>]</pre> | no |
+| service\_account\_scopes | A list of service scopes to apply to the PgBouncer instance. Default is the full `cloud-platform` access scope. | `any` | `null` | no |
 | subnetwork | The name or self-link of the subnet where PgBouncer will be created. Either network or subnetwork must be provided. | `string` | `null` | no |
 | tags | A list of tags to assign to PgBouncer instances. | `list` | `[]` | no |
 
