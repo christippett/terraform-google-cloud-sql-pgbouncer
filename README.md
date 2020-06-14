@@ -54,7 +54,7 @@ Functional examples are included in the
 | module\_depends\_on | List of modules or resources this module depends on. | `list` | `[]` | no |
 | pgbouncer\_custom\_config | Custom PgBouncer configuration values to be appended to `pgbouncer.ini`. | `string` | `""` | no |
 | pgbouncer\_image\_tag | The tag to use for the base PgBouncer `edoburu/pgbouncer` Docker image used by this module. | `string` | `"latest"` | no |
-| pool\_mode | Specifies when a server connection can be reused by other clients. Possible values are `session`, `transaction` or `statement`. | `string` | `"transactional"` | no |
+| pool\_mode | Specifies when a server connection can be reused by other clients. Possible values are `session`, `transaction` or `statement`. | `string` | `"transaction"` | no |
 | public\_ip\_address | The public IP address to assign to the PgBouncer instance. If not given, one will be generated. Note: setting this value will limit the instance count to 1. | `string` | `null` | no |
 | service\_account\_email | The service account e-mail address. If not given, the default Google Compute Engine service account is used. | `any` | `null` | no |
 | service\_account\_scopes | A list of service scopes to apply to the PgBouncer instance. | `list` | <pre>[<br>  "https://www.googleapis.com/auth/cloud-platform"<br>]</pre> | no |

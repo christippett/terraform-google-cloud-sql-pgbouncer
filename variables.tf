@@ -45,7 +45,7 @@ variable "auth_query" {
 variable "pool_mode" {
   description = "Specifies when a server connection can be reused by other clients. Possible values are `session`, `transaction` or `statement`."
   type        = string
-  default     = "transactional"
+  default     = "transaction"
 }
 
 variable "default_pool_size" {
