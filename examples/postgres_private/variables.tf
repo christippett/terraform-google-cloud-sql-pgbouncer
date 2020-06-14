@@ -3,6 +3,21 @@ variable "project" {
   type        = string
 }
 
+variable "zone" {
+  description = "The zone where PgBouncer will be created."
+  type        = string
+}
+
+variable "network_name" {
+  description = "The name of the network where PgBouncer will be created."
+  type        = string
+}
+
+variable "subnetwork_name" {
+  description = "The name of the subnet where PgBouncer will be created."
+  type        = string
+}
+
 variable "db_name" {
   description = "The name of the default database to create."
   default     = "defaultdb"

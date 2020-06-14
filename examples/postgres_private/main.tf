@@ -1,42 +1,24 @@
-provider "google" {
-  region = "us-central1"
-  zone   = "us-central1-a"
+provider "google" {}
+
+provider "google-beta" {}
+
+locals {
+  region = join("-", slice(split("-", var.zone), 0, 2))
 }
 
-provider "google-beta" {
-  region = "us-central1"
-  zone   = "us-central1-a"
+data "google_compute_subnetwork" "subnet" {
+  project = var.project
+  name    = var.subnetwork_name
+  region  = local.region
 }
 
-resource "random_id" "suffix" {
-  byte_length = 5
-}
-
-/* Network ------------------------------------------------------------------ */
-
-module "network" {
-  source  = "terraform-google-modules/network/google"
-  version = "~> 2.3"
-
-  project_id   = var.project
-  network_name = "vpc-${random_id.suffix.hex}"
-
-  subnets = [
-    {
-      subnet_name   = "subnet-01"
-      subnet_ip     = "10.10.10.0/24"
-      subnet_region = "us-central1"
-    }
-  ]
-}
+/* Database ----------------------------------------------------------------- */
 
 module "private_service_access" {
   source      = "GoogleCloudPlatform/sql-db/google//modules/private_service_access"
   project_id  = var.project
-  vpc_network = module.network.network_name
+  vpc_network = var.network_name
 }
-
-/* Database ----------------------------------------------------------------- */
 
 module "db" {
   source = "GoogleCloudPlatform/sql-db/google//modules/postgresql"
@@ -45,8 +27,8 @@ module "db" {
   name       = "db-${random_id.suffix.hex}"
 
   database_version = "POSTGRES_12"
-  region           = "us-central1"
-  zone             = "a"
+  region           = local.region
+  zone             = split("-", var.zone)[2]
   tier             = "db-f1-micro"
 
   db_name       = var.db_name
@@ -55,7 +37,7 @@ module "db" {
 
   ip_configuration = {
     ipv4_enabled        = false
-    private_network     = module.network.network_self_link
+    private_network     = data.google_compute_subnetwork.subnet.network
     require_ssl         = false
     authorized_networks = []
   }
@@ -67,6 +49,7 @@ module "db" {
 
 resource "google_compute_address" "pgbouncer" {
   project      = var.project
+  region       = local.region
   name         = "ip-pgbouncer-${random_id.suffix.hex}"
   network_tier = "PREMIUM"
 }
@@ -76,8 +59,8 @@ module "pgbouncer" {
 
   project           = var.project
   name              = "vm-pgbouncer-${random_id.suffix.hex}"
-  zone              = "us-central1-a"
-  subnetwork        = "subnet-01"
+  zone              = var.zone
+  subnetwork        = var.subnetwork_name
   public_ip_address = google_compute_address.pgbouncer.address
   tags              = ["pgbouncer"]
 
@@ -96,15 +79,21 @@ module "pgbouncer" {
 /* Firewall ----------------------------------------------------------------- */
 
 resource "google_compute_firewall" "pgbouncer" {
-  name    = "fw-pgbouncer-${random_id.suffix.hex}"
+  name    = "${var.network_name}-ingress-pgbouncer-${random_id.suffix.hex}"
   project = var.project
-  network = module.network.network_self_link
+  network = var.network_name
 
   source_ranges = ["0.0.0.0/0"]
   target_tags   = ["pgbouncer"]
 
   allow {
     protocol = "tcp"
-    ports    = [module.pgbouncer.port, 22]
+    ports    = [module.pgbouncer.port]
   }
+}
+
+/* Misc --------------------------------------------------------------------- */
+
+resource "random_id" "suffix" {
+  byte_length = 5
 }
