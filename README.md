@@ -55,14 +55,15 @@ The following dependencies must be available:
 A service account with the following roles must be used to provision
 the resources of this module:
 
-- TBC ⌛
+- `roles/compute.instanceAdmin`
+- `roles/iam.serviceAccountUser`
 
 ### APIs
 
 A project with the following APIs enabled must be used to host the
 resources of this module:
 
-- TBC ⌛
+- `compute.googleapis.com`
 
 [terraform-provider-gcp]: https://www.terraform.io/docs/providers/google/index.html
 [terraform]: https://www.terraform.io/downloads.html
