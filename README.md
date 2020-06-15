@@ -1,8 +1,9 @@
-# terraform-cloud-sql-pgbouncer
+# Terraform PgBouncer for Cloud SQL
 
 [![GitHub](https://badgen.net/github/release/christippett/terraform-google-cloud-sql-pgbouncer)](https://github.com/christippett/terraform-google-cloud-sql-pgbouncer?cache=1800) [![Terraform](https://badgen.net/badge/icon/terraform?icon=terraform&label&color=purple)](https://registry.terraform.io/modules/christippett/cloud-sql-pgbouncer/) [![Terraform](https://badgen.net/github/license/micromatch/micromatch)](./LICENSE)
 
-Terraform module for deploying PgBouncer in front of a Cloud SQL PostgreSQL instance.
+Let Cloud Run wild on your database 🐆
+
 
 ## Usage
 
@@ -22,14 +23,24 @@ module "pgbouncer" {
   database_host = var.database_host
 
   users = [
-    { name = "user1", password = "password" },
-    { name = "user2", password = "password" }
+    { name = "admin", password = "password", admin = true },
+    { name = "user", password = "password" }
   ]
 }
 ```
 
+All passwords are stored as md5 hashes, although the module accepts both plain-text and pre-hashed passwords as input. Any plain-text passwords will be automatically hashed.
+
+The `users` map accepts an optional `admin` key. When this is set to `true`, the user will be added to the list of PgBouncer admins and stats users.
+
 Functional examples are included in the
 [examples](./examples/) directory.
+
+## Configuring PgBouncer
+
+Only a subset of PgBouncer configuration fields are available as input variables. For greater control over the configuration that's used, you're able to eject from the configuration used by the module and provide your own configuration through the `pgbouncer_custom_config` input variable. The contents of this variable will be added to `pgbouncer.ini`.
+
+See [here](./modules/pgbouncer_cloud_init/templates/pgbouncer.ini.tmpl) for the `pgbouncer.ini` template used by this module. The full list of available PgBouncer configuration options can be found [here](https://www.pgbouncer.org/config.html).
 
 ## Inputs
 
