@@ -1,18 +1,16 @@
 # Terraform PgBouncer for Cloud SQL
 
-[![GitHub](https://badgen.net/github/tag/christippett/terraform-google-cloud-sql-pgbouncer?label=release)](https://github.com/christippett/terraform-google-cloud-sql-pgbouncer) [![Terraform](https://badgen.net/badge/icon/terraform?icon=terraform&label&color=purple)](https://registry.terraform.io/modules/christippett/cloud-sql-pgbouncer/) [![Terraform](https://badgen.net/github/license/micromatch/micromatch)](./LICENSE)
+[![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/christippett/terraform-google-cloud-sql-pgbouncer?label=Version)](./CHANGELOG.md) [![Terraform Registry](https://img.shields.io/badge/Terraform-Registry-623CE4)](https://registry.terraform.io/modules/christippett/cloud-sql-pgbouncer/)
 
 Let Cloud Run wild on your database 🐆
 
 
 ## Usage
 
-Basic usage of this module is as follows:
-
 ```hcl
 module "pgbouncer" {
   source  = "christippett/cloud-sql-pgbouncer/google"
-  version = "~>1.0"
+  version = "~>1.1"
 
   project    = var.project
   name       = "pgbouncer"
