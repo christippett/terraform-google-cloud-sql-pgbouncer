@@ -142,3 +142,9 @@ variable "module_depends_on" {
   type        = list
   default     = []
 }
+
+variable "network_ip" {
+  description = "Private IP Address of the VM"
+  type        = string
+  default     = null
+}
