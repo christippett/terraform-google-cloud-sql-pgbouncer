@@ -2,15 +2,15 @@
 
 write_files:
   - path: /run/user/pgbouncer.ini
-    permissions: 0644
+    permissions: "0644"
     encoding: b64
     content: ${config}
   - path: /run/user/userlist.txt
-    permissions: 0644
+    permissions: "0644"
     encoding: b64
     content: ${userlist}
   - path: /etc/systemd/system/pgbouncer.service
-    permissions: 0644
+    permissions: "0644"
     owner: root
     content: |
       [Unit]
