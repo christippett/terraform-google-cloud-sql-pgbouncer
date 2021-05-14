@@ -27,7 +27,7 @@ variable "port" {
 
 variable "users" {
   description = "The list of users to be created in PgBouncer's userlist.txt. Passwords can be provided as plain-text or md5 hashes."
-  type        = list
+  type        = list(string)
 }
 
 variable "auth_user" {
@@ -111,7 +111,7 @@ variable "boot_image" {
 
 variable "tags" {
   description = "A list of tags to assign to PgBouncer instances."
-  type        = list
+  type        = list(string)
   default     = []
 }
 
@@ -139,6 +139,6 @@ variable "disable_service_account" {
 
 variable "module_depends_on" {
   description = "List of modules or resources this module depends on."
-  type        = list
+  type        = list(any)
   default     = []
 }
