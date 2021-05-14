@@ -6,6 +6,10 @@ locals {
   region = join("-", slice(split("-", var.zone), 0, 2))
 }
 
+resource "random_id" "suffix" {
+  byte_length = 5
+}
+
 data "google_compute_subnetwork" "subnet" {
   project = var.project
   name    = var.subnetwork_name
@@ -15,13 +19,16 @@ data "google_compute_subnetwork" "subnet" {
 /* Database ----------------------------------------------------------------- */
 
 module "private_service_access" {
-  source      = "GoogleCloudPlatform/sql-db/google//modules/private_service_access"
+  source  = "GoogleCloudPlatform/sql-db/google//modules/private_service_access"
+  version = "~>5.0.0"
+
   project_id  = var.project
   vpc_network = var.network_name
 }
 
 module "db" {
-  source = "GoogleCloudPlatform/sql-db/google//modules/postgresql"
+  source  = "GoogleCloudPlatform/sql-db/google//modules/postgresql"
+  version = "~>5.0.0"
 
   project_id = var.project
   name       = "db-${random_id.suffix.hex}"
@@ -90,10 +97,4 @@ resource "google_compute_firewall" "pgbouncer" {
     protocol = "tcp"
     ports    = [module.pgbouncer.port]
   }
-}
-
-/* Misc --------------------------------------------------------------------- */
-
-resource "random_id" "suffix" {
-  byte_length = 5
 }
