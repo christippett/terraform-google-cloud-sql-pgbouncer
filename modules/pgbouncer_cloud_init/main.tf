@@ -1,5 +1,5 @@
 locals {
-  users    = [for u in var.users : ({ name = u.name, password = substr(u.password, 0, 2) == "md5" ? u.password : "md5${md5("${u.password}${u.name}")}" })]
+  users    = [for u in var.users : ({ name = u.name, password = substr(u.password, 0, 3) == "md5" ? u.password : "md5${md5("${u.password}${u.name}")}" })]
   admins   = [for u in var.users : u.name if lookup(u, "admin", false) == true]
   userlist = templatefile("${path.module}/templates/userlist.txt.tmpl", { users = local.users })
   cloud_config = templatefile(
@@ -21,7 +21,7 @@ locals {
 }
 
 data "template_file" "cloud_config" {
-  template = "${file("${path.module}/templates/cloud-init.yaml.tmpl")}"
+  template = file("${path.module}/templates/cloud-init.yaml.tmpl")
   vars = {
     image       = "edoburu/pgbouncer:${var.pgbouncer_image_tag}"
     listen_port = var.listen_port
