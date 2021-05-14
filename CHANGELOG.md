@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/christippett/terraform-google-cloud-sql-pgbouncer/compare/v1.1.1...v1.2.0) (2021-05-14)
+
+
+### Features
+
+* Upgrade default base image to Container-Optimized OS 89 ([3d7f3c8](https://github.com/christippett/terraform-google-cloud-sql-pgbouncer/commit/3d7f3c84bf24b50cff47504b84535367d2b2956a))
+
+
+### Bug Fixes
+
+* Add missing config values in pgbouncer.ini ([dbb5da4](https://github.com/christippett/terraform-google-cloud-sql-pgbouncer/commit/dbb5da4e74dcdb52a55bac812bbd3a8f191d7e74))
+* Define permissions as strings in cloud-init config ([e16b061](https://github.com/christippett/terraform-google-cloud-sql-pgbouncer/commit/e16b06179aa957c1fd9062928b9bae74c58368e6))
+* md5 password prefix ([977e769](https://github.com/christippett/terraform-google-cloud-sql-pgbouncer/commit/977e769dadf89c37d9b4b14b2055a834623d278a))
+
 ### [1.1.2](https://github.com/christippett/terraform-cloud-sql-pgbouncer/compare/v1.1.1...v1.1.2) (2020-07-05)
 
 ### [1.1.1](https://github.com/christippett/terraform-cloud-sql-pgbouncer/compare/v1.1.0...v1.1.1) (2020-06-14)
