@@ -79,12 +79,6 @@ variable "pgbouncer_image_tag" {
 
 /* Instance Configuration --------------------------------------------------- */
 
-variable "instance_count" {
-  description = "The number of instances of PgBouncer to create. Useful for HA setups."
-  type        = number
-  default     = 1
-}
-
 variable "subnetwork" {
   description = "The name or self-link of the subnet where PgBouncer will be created. Either network or subnetwork must be provided."
   type        = string
